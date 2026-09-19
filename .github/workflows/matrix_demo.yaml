@@ -1,0 +1,17 @@
+name: Matrix workflow Demo
+
+on: [push]
+
+jobs:
+  test-matrix:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node-version: [14, 16, 18]
+      
+    steps:
+      - name: Check OS and Node version
+        run: |
+          echo "Running on OS: ${{ matrix.os }}"
+          echo "Using Node.js version: ${{ matrix.node-version }}"
