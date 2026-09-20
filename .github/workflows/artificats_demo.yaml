@@ -1,0 +1,35 @@
+name: Artifacts Demo
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build Application
+        # Created an ewp-build directory and added a text file to simulate a build process
+        run: |
+          echo "Building the application..."
+          mkdir ewp-build
+          echo "Hello world v1.0." > ewp-build/app.text
+          echo "Build completed at $(date)" > ewp-build/build-info.txt
+
+        # upload the build artifacts (Save the build artifacts for later use)
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-app-build   #Name of the artifact
+          path: ewp-build/
+
+  deploy:
+    needs: build  #Wait for the build job to complete before starting the deploy job
+    runs-on: ubuntu-latest
+    steps:
+      # download the build artifacts (Retrieve the build artifacts from the previous job)
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: my-app-build
