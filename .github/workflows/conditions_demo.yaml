@@ -1,4 +1,4 @@
-name: Conditions execution using if demo
+name: Conditions execution using if Demo
 
 on: [push, pull_request]
 
