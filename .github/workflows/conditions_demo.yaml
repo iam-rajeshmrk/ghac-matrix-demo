@@ -6,7 +6,7 @@ jobs:
   security-scan:
     # Only run on main branch or for pull requests
 
-    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - run: echo "Running security scan on main branch or pull request"
