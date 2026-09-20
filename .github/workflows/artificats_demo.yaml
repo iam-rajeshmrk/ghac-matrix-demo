@@ -19,7 +19,7 @@ jobs:
         # upload the build artifacts (Save the build artifacts for later use)
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: my-app-build   #Name of the artifact
           path: ewp-build/
