@@ -1,0 +1,19 @@
+name: Conditions execution using if demo
+
+on: [push, pull_request]
+
+jobs:
+  security-scan:
+    # Only run on main branch or for pull requests
+
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running security scan on main branch or pull request"
+
+  deploy-staging:
+    # Only run on main branch
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying to staging..."
